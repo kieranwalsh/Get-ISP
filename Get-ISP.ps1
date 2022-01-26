@@ -3,8 +3,7 @@
     Lists the ISP for any public IP address.
 
     .DESCRIPTION
-    Scans AD for DPM servers, connects to them and gathers information about the DPM setup and all jobs. This information is compiled
-    into HTML which becomes the body of an email report.
+    Lists the ISP for any public IP address. You can chose particular IPs or your own machine.
 
     .PARAMETER PublicIPs
     Use this parameter to specify a list of public IP addresses to scan. If this parameter is not specified, the script will scan the public IP of the device you run it from.
