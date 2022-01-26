@@ -31,7 +31,7 @@
     Contributors: Kieran Walsh
     Created: 2022-01-26
     Last Updated: 2022-01-26
-    Version: 0.01.0
+    Version: 0.01.01
 #>
 
 [CmdletBinding()]
@@ -51,12 +51,18 @@ foreach($PublicIP in $PublicIPs)
     $ISP = ((Invoke-WebRequest -Uri $SearchURL -UseBasicParsing).content -replace '{', '' -replace '}', '' -replace '"', '' -split ',' | Where-Object {
             $_ -match 'isp:'
         }).replace('isp:', '')
+
+    if($ISP -match 'Private IP Address LAN')
+    {
+        $ISP = '* IP is not a Public IP *'
+    }
+
     if($IspOnly)
     {
         $ISP
     }
     Else
     {
-        Write-Host "IP: $PublicIP `tISP: $ISP"
+        Write-Host $('IP: {0,-17} ISP: {1}' -f $PublicIP, $ISP)
     }
 }
