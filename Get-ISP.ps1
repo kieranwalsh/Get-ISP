@@ -30,8 +30,8 @@
     Filename: Get-ISP.ps1
     Contributors: Kieran Walsh
     Created: 2022-01-26
-    Last Updated: 2022-01-26
-    Version: 0.01.01
+    Last Updated: 2022-01-27
+    Version: 0.01.02
 #>
 
 [CmdletBinding()]
@@ -43,7 +43,7 @@ Param(
 
 if(-not($PublicIPs))
 {
-    $PublicIPs = (Invoke-WebRequest -Uri http://ifconfig.me/ip -TimeoutSec 60).Content.Trim()
+    $PublicIPs = (Invoke-WebRequest -Uri http://ifconfig.me/ip -TimeoutSec 60 -UseBasicParsing).Content.Trim()
 }
 foreach($PublicIP in $PublicIPs)
 {
